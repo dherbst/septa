@@ -1,7 +1,10 @@
 package septabot
 
 import (
-// "log"
+	"errors"
+	"fmt"
+	"log"
+	"net/http"
 )
 
 // SeptaAPI handles interacting with the Septa API to get information.
@@ -21,8 +24,24 @@ type NextToArriveResult struct {
 
 // NextToArrive returns the num departures for the station.
 // Calls http://www3.septa.org/hackathon/NextToArrive/Suburban%20Station/Narberth/10
-func (api *SeptaAPI) NextToArrive(station string, num int) ([]NextToArriveResult, error) {
+func (api *SeptaAPI) NextToArrive(fromStation string, toStation string, num int) ([]NextToArriveResult, error) {
 	var result []NextToArriveResult
+	if fromStation == "" {
+		return result, errors.New("missing fromStation")
+	}
+	if toStation == "" {
+		return result, errors.New("missing toStation")
+	}
+	if num < 1 {
+		return result, errors.New("num must be greater than zero")
+	}
+
+	url := fmt.Sprintf("http://%s/hackathon/NextToArrive/%s/%s/%d", api.Domain, fromStation, toStation, num)
+	_, err := http.Get(url)
+	if err != nil {
+		log.Printf("Error calling %v err=%v\n", url, err)
+		return result, err
+	}
 
 	return result, nil
 }
