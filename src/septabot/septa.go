@@ -1,31 +1,29 @@
 package septabot
 
 import (
+	"context"
 	"errors"
-	"fmt"
-	"log"
-	"net/http"
 )
 
 // SeptaAPI handles interacting with the Septa API to get information.
-type SeptaAPI struct {
-	Domain string
+type Septa struct {
+	api SeptaAPI
 }
 
-// NextToArriveResult holds the num results.
-type NextToArriveResult struct {
-	Train           string `json:"orig_train"`
-	Line            string `json:"orig_line"`
-	DepartureString string `json:"orig_departure_time"`
-	ArrivalString   string `json:"orig_arrival_time"`
-	Delay           string `json:"orig_delay"`
-	IsDirect        string `json:"isdirect"`
+// NewSepta creates a new Septa object for interacting with the Septa API
+func NewSepta(apiImpl SeptaAPI) *Septa {
+	septa := &Septa{
+		api: apiImpl,
+	}
+	return septa
 }
 
 // NextToArrive returns the num departures for the station.
 // Calls http://www3.septa.org/hackathon/NextToArrive/Suburban%20Station/Narberth/10
-func (api *SeptaAPI) NextToArrive(fromStation string, toStation string, num int) ([]NextToArriveResult, error) {
+func (s *Septa) NextToArrive(ctx context.Context, fromStation string, toStation string, num int) ([]NextToArriveResult, error) {
 	var result []NextToArriveResult
+	var err error
+
 	if fromStation == "" {
 		return result, errors.New("missing fromStation")
 	}
@@ -36,12 +34,7 @@ func (api *SeptaAPI) NextToArrive(fromStation string, toStation string, num int)
 		return result, errors.New("num must be greater than zero")
 	}
 
-	url := fmt.Sprintf("http://%s/hackathon/NextToArrive/%s/%s/%d", api.Domain, fromStation, toStation, num)
-	_, err := http.Get(url)
-	if err != nil {
-		log.Printf("Error calling %v err=%v\n", url, err)
-		return result, err
-	}
+	result, err = s.api.NextToArrive(ctx, fromStation, toStation, num)
 
-	return result, nil
+	return result, err
 }

@@ -17,3 +17,6 @@ build-in-container:
 
 septaimage: build
 	docker build -t septabot:latest .
+
+run:
+	docker run -p 8080:8080 -d septabot:latest
