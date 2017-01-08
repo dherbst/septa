@@ -2,6 +2,7 @@ package septabot
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -37,21 +38,28 @@ func NewSeptaAPIImpl() *SeptaAPIImpl {
 func (api *SeptaAPIImpl) NextToArrive(ctx context.Context,
 	fromStation string,
 	toStation string,
-	num int) ([]byte, error) {
+	num int) ([]NextToArriveResult, error) {
 
-	result := []byte{}
+	var results []NextToArriveResult
 	url := fmt.Sprintf("http://%s/hackathon/NextToArrive/%s/%s/%d", api.domain, fromStation, toStation, num)
 	response, err := http.Get(url)
 	defer response.Body.Close()
 	if err != nil {
 		log.Printf("Error calling %v err=%v\n", url, err)
-		return result, err
+		return results, err
 	}
 
-	result, err = ioutil.ReadAll(response.Body)
+	result, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		return result, err
+		log.Printf("Error reading response.Body %v\n", err)
+		return results, err
 	}
 
-	return result, nil
+	err = json.Unmarshal(result, &results)
+	if err != nil {
+		log.Printf("Error unmarshalling results %v\n%v", err, string(result))
+		return results, err
+	}
+
+	return results, nil
 }
