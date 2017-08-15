@@ -5,7 +5,7 @@ clean:
 	rm -f bin/septabot bin/narb bin/sub || true
 
 pull:
-	docker pull golang:1.7
+	docker pull golang:1.8
 
 build:
 	docker run -i --rm -v "$(PWD)":/usr/src/myapp -w /usr/src/myapp golang:1.7 make build-in-container
