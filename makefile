@@ -1,3 +1,7 @@
+.phony: *
+
+GOLANG=golang:1.10
+
 all: clean pull build septaimage
 
 clean:
@@ -5,10 +9,10 @@ clean:
 	rm -f bin/septabot bin/narb bin/sub || true
 
 pull:
-	docker pull golang:1.8
+	docker pull ${GOLANG}
 
 build:
-	docker run -i --rm -v "$(PWD)":/usr/src/myapp -w /usr/src/myapp golang:1.7 make build-in-container
+	docker run -i --rm -v "$(PWD)":/usr/src/myapp -w /usr/src/myapp ${GOLANG} make build-in-container
 
 build-in-container:
 	GOPATH=/usr/src/myapp go vet septabot

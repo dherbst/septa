@@ -43,11 +43,11 @@ func (api *SeptaAPIImpl) NextToArrive(ctx context.Context,
 	var results []NextToArriveResult
 	url := fmt.Sprintf("http://%s/hackathon/NextToArrive/%s/%s/%d", api.domain, fromStation, toStation, num)
 	response, err := http.Get(url)
-	defer response.Body.Close()
 	if err != nil {
 		log.Printf("Error calling %v err=%v\n", url, err)
 		return results, err
 	}
+	defer response.Body.Close()
 
 	result, err := ioutil.ReadAll(response.Body)
 	if err != nil {
