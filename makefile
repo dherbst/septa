@@ -1,4 +1,4 @@
-.phony: *
+.PHONY: *
 
 GOLANG=golang:1.10
 
