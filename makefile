@@ -18,6 +18,7 @@ build:
 build-in-container:
 	GOPATH=/usr/src/myapp go vet septabot
 	GOPATH=/usr/src/myapp go test -coverprofile=coverage.out septabot
+	GOPATH=/usr/src/myapp go tool cover -html=coverage.out -o coverage.html
 	GOOS=${GOOS} GOPATH=/usr/src/myapp go build -o bin/septabot /usr/src/myapp/src/septabot/cmd/septabot/septabot.go
 	GOOS=${GOOS} GOPATH=/usr/src/myapp go build -o bin/septa /usr/src/myapp/src/septabot/cmd/septa/septa.go
 	GOOS=${GOOS} GOPATH=/usr/src/myapp go build -o bin/narb /usr/src/myapp/src/septabot/cmd/narb/narb.go
