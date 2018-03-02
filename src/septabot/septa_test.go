@@ -23,3 +23,13 @@ func TestNextToArriveResult(t *testing.T) {
 	}
 
 }
+
+func TestNewSeptaAPIImpl(t *testing.T) {
+	api := NewSeptaAPIImpl()
+	if api == nil {
+		t.Fatalf("Did not get api impl back\n")
+	}
+	if api.domain != "www3.septa.org" {
+		t.Fatalf("Did not get expected domain, got %v\n", api.domain)
+	}
+}

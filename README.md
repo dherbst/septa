@@ -3,7 +3,5 @@ Septa alerting slack bot
 
 ## Commands
 
-### septabot depart Suburban Station to Narberth
-
-### septabot depart Narberth to Suburban Station
-### septabot depart narb to sub
+### septa nta <src> <dest>
+Returns the next to arrive between the src and dest stations.
