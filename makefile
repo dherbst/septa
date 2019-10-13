@@ -1,32 +1,44 @@
-.PHONY: *
+.PHONY: all clean pull get build build-in-container image
 
-GOLANG = golang:1.10
-GOOS = darwin
+GOLANG := golang:1.13
+GOOS := darwin
 
-all: clean pull build septaimage
+all: clean pull lint sec build install
 
 clean:
+	rm -rf vendor/
 	mkdir -p bin
-	rm -f bin/septabot bin/narb bin/sub || true
+	rm -f bin/septa || true
+
+get:
+	mkdir -p vendor
 
 pull:
 	docker pull ${GOLANG}
 
+lint:
+	docker run -i --rm -v  ${PWD}:/go/src/github.com/dherbst/septa -w /go/src/github.com/dherbst/septa ${GOLANG} make lint-in-container
+
+lint-in-container:
+	go get -u golang.org/x/lint/golint
+	golint github.com/dherbst/septa
+	golint github.com/dherbst/septa/cmd/septa/...
+
+sec:
+	docker run -it --rm -v ${PWD}:/go/src/github.com/dherbst/septa -w /go/src/github.com/dherbst/septa ${GOLANG} make sec-in-container
+
+sec-in-container:
+	go get -u github.com/securego/gosec/cmd/gosec
+	gosec .
+
 build:
-	docker run -i --rm -v "$(PWD)":/usr/src/myapp -w /usr/src/myapp ${GOLANG} make build-in-container
+	docker run -i --rm -v "$(PWD)":/go/src/github.com/dherbst/septa -w /go/src/github.com/dherbst/septa ${GOLANG} make build-in-container
 
 build-in-container:
-	GOPATH=/usr/src/myapp go vet septabot
-	GOPATH=/usr/src/myapp go test -coverprofile=coverage.out septabot
-	GOPATH=/usr/src/myapp go tool cover -html=coverage.out -o coverage.html
-	GOOS=${GOOS} GOPATH=/usr/src/myapp go build -o bin/septabot /usr/src/myapp/src/septabot/cmd/septabot/septabot.go
-	GOOS=${GOOS} GOPATH=/usr/src/myapp go build -o bin/septa /usr/src/myapp/src/septabot/cmd/septa/septa.go
-	GOOS=${GOOS} GOPATH=/usr/src/myapp go build -o bin/narb /usr/src/myapp/src/septabot/cmd/narb/narb.go
-	GOOS=${GOOS} GOPATH=/usr/src/myapp go build -o bin/sub /usr/src/myapp/src/septabot/cmd/sub/sub.go
+	GOOS=darwin go build -o bin/septa cmd/septa/*.go
 
+install:
+	cp bin/septa ~/bin/septa
 
-septaimage: build
-	docker build -t septabot:latest .
-
-run:
-	docker run -p 8080:8080 -d septabot:latest
+image: build
+	docker build -t septa:latest .
