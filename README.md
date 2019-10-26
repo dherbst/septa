@@ -6,13 +6,13 @@ Septa command line for getting the next to arrive.
 ### septa next <src> <dest>
 Returns the next to arrive between the src and dest stations.
 
-   $ septa next Narberth "Suburban Station"
+    $ septa next Narberth "Suburban Station"
 
-   Paoli/Thorndale Train 5340 Departs  4:57PM Arrives  5:16PM On time
-   Paoli/Thorndale Train 1542 Departs  5:27PM Arrives  5:45PM On time
-   Paoli/Thorndale Train 5344 Departs  5:57PM Arrives  6:16PM On time
-   Paoli/Thorndale Train 5348 Departs  6:57PM Arrives  7:16PM On time
-   Paoli/Thorndale Train 5352 Departs  7:57PM Arrives  8:16PM On time
+    Paoli/Thorndale Train 5340 Departs  4:57PM Arrives  5:16PM On time
+    Paoli/Thorndale Train 1542 Departs  5:27PM Arrives  5:45PM On time
+    Paoli/Thorndale Train 5344 Departs  5:57PM Arrives  6:16PM On time
+    Paoli/Thorndale Train 5348 Departs  6:57PM Arrives  7:16PM On time
+    Paoli/Thorndale Train 5352 Departs  7:57PM Arrives  8:16PM On time
 
 
 ### septa stations
