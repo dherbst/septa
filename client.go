@@ -39,6 +39,16 @@ type NextToArriveResult struct {
 	IsDirect        string `json:"isdirect"`
 }
 
+// String returns a formatted string suitable for printing.
+func (r NextToArriveResult) String() string {
+	delay := r.Delay
+	if delay != "On time" {
+		delay += " delay"
+	}
+	return fmt.Sprintf("%v Train %v Departs %v Arrives %v %v",
+		r.Line, r.Train, r.DepartureString, r.ArrivalString, delay)
+}
+
 // NextToArrive makes a call to the next to arrive api and returns the results
 func (c *Client) NextToArrive(from string, to string, num int) ([]NextToArriveResult, error) {
 	url := fmt.Sprintf("https://%s/hackathon/NextToArrive/%s/%s/%d",
