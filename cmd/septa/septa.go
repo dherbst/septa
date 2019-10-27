@@ -4,15 +4,23 @@ import (
 	"context"
 	"flag"
 	"fmt"
+
+	"github.com/dherbst/septa"
 )
 
 var funcMap map[string]func(context.Context)
 
 func init() {
 	funcMap = map[string]func(context.Context){
-		"help": Usage,
-		"next": NextToArrive,
+		"help":    Usage,
+		"next":    NextToArrive,
+		"version": Version,
 	}
+}
+
+// Version prints the version from the septa.GitHash out and exits.
+func Version(ctx context.Context) {
+	fmt.Printf("Version: %v\n", septa.GitHash)
 }
 
 // Usage prints how to invoke `septa` from the command line.
@@ -21,6 +29,7 @@ func Usage(ctx context.Context) {
 Usage:
 
 septa next [from-station] [to-station]
+septa version   ; prints the commit version
 `)
 
 }

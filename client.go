@@ -2,6 +2,7 @@ package septa
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -9,6 +10,9 @@ import (
 	"net/url"
 	"time"
 )
+
+// GitHash is the sha hash of the current commit used to build this code.
+var GitHash string
 
 // Client is used to make calls to the septa website.
 type Client struct {
@@ -51,14 +55,20 @@ func (r NextToArriveResult) String() string {
 
 // NextToArrive makes a call to the next to arrive api and returns the results
 func (c *Client) NextToArrive(from string, to string, num int) ([]NextToArriveResult, error) {
+	var results []NextToArriveResult
+
+	// Clean the input
+	if !IsValidStation(from) || !IsValidStation(to) {
+		return results, errors.New("Invalid Station")
+	}
+
 	url := fmt.Sprintf("https://%s/hackathon/NextToArrive/%s/%s/%d",
 		c.Domain,
 		url.PathEscape(from),
 		url.PathEscape(to),
 		num)
-	log.Printf("url=%v\n", url)
 
-	var results []NextToArriveResult
+	// #nosec ignoring G107 here because we have cleaned the input above.
 	response, err := http.Get(url)
 	if err != nil {
 		log.Printf("Error calling NextToArrive err=%v\n", err)
