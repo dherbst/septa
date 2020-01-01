@@ -23,7 +23,16 @@ Returns the next to arrive between the src and dest stations.
 
 
 ### septa stations
-TODO: Will list the stations.
+Returns the list of stations
+
+    $ septa stations
+
+    9th St
+    30th Street Station
+    49th St
+    Airport Terminal A
+    Airport Terminal B
+    ...
 
 
 ### Alerts
