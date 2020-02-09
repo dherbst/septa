@@ -7,6 +7,8 @@ You can create a bash alias to make looking up the next to arrive for your favor
 
     alias nta="septa next Narberth \"Suburban Station\""
 
+Alternatively, you can use the `go install` command, if you clone this repo to your implied `GOPATH`.
+
 
 ## Commands
 
