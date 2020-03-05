@@ -7,6 +7,8 @@ You can create a bash alias to make looking up the next to arrive for your favor
 
     alias nta="septa next Narberth \"Suburban Station\""
 
+Alternatively, you can use the `go install` command, if you clone this repo to your implied `GOPATH`.
+
 
 ## Commands
 
@@ -23,7 +25,16 @@ Returns the next to arrive between the src and dest stations.
 
 
 ### septa stations
-TODO: Will list the stations.
+Returns the list of stations
+
+    $ septa stations
+
+    9th St
+    30th Street Station
+    49th St
+    Airport Terminal A
+    Airport Terminal B
+    ...
 
 
 ### Alerts

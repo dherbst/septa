@@ -12,9 +12,10 @@ var funcMap map[string]func(context.Context)
 
 func init() {
 	funcMap = map[string]func(context.Context){
-		"help":    Usage,
-		"next":    NextToArrive,
-		"version": Version,
+		"help":     Usage,
+		"next":     NextToArrive,
+		"stations": Stations,
+		"version":  Version,
 	}
 }
 
@@ -28,8 +29,9 @@ func Usage(ctx context.Context) {
 	fmt.Printf(`
 Usage:
 
-septa next [from-station] [to-station]
-septa version   ; prints the commit version
+septa stations [pattern]                   ; list stations, or match pattern
+septa next [from-station] [to-station]     ; show the next to arrive
+septa version                              ; prints the commit version
 `)
 
 }

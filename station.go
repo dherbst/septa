@@ -1,6 +1,7 @@
 package septa
 
-var stations = []string{
+// Stations is the list of valid station names for next to arrive
+var Stations = []string{
 	"9th St",
 	"30th Street Station",
 	"49th St",
@@ -160,7 +161,7 @@ var stations = []string{
 
 // IsValidStation returns whether the station is a valid station.
 func IsValidStation(station string) bool {
-	for _, v := range stations {
+	for _, v := range Stations {
 		if station == v {
 			return true
 		}
