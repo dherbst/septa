@@ -9,18 +9,14 @@ LDFLAGS := "-X github.com/dherbst/septa.GitHash=${GIT_HASH}"
 all: clean pull lint sec test build install
 
 clean:
-	rm -rf vendor/
 	mkdir -p bin
 	rm -f bin/septa || true
-
-get:
-	mkdir -p vendor
 
 pull:
 	docker pull ${GOLANG}
 
 lint:
-	docker run -i --rm -v  ${PWD}:/go/src/github.com/dherbst/septa -w /go/src/github.com/dherbst/septa ${GOLANG} make lint-in-container
+	docker run -i --rm -v ${PWD}:/go/src/github.com/dherbst/septa -w /go/src/github.com/dherbst/septa ${GOLANG} make lint-in-container
 
 lint-in-container:
 	go get -u golang.org/x/lint/golint
@@ -50,6 +46,9 @@ build-in-container:
 install:
 	mkdir -p ~/bin
 	cp bin/septa ~/bin/septa
+
+install-local:
+	go install -ldflags ${LDFLAGS} github.com/dherbst/septa/cmd/septa
 
 image: build
 	docker build -t septa:latest .

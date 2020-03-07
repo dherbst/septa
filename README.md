@@ -1,14 +1,22 @@
 # septa
 Septa command line for getting the next to arrive.
 
-To build the command, clone this repo, then type `make`.  The septa executable will be copied to `$HOME/bin`.   Prerequisite is that you have `docker` installed, and `$HOME/bin` is on your `$PATH`
+## Build
+To build the command, clone this repo, then type `make`.  The septa executable will be copied to `$HOME/bin`.   Prerequisite is that you have `docker` installed, and `$HOME/bin` is on your `$PATH`.
+
+    git clone https://github.com/dherbst/septa
+    cd septa
+    make
 
 You can create a bash alias to make looking up the next to arrive for your favorite stations:
 
     alias nta="septa next Narberth \"Suburban Station\""
 
-Alternatively, you can use the `go install` command, if you clone this repo to your implied `GOPATH`.
+Alternatively, you can use the `go install` command which should install the `septa` binary to `$HOME/go/bin`:
 
+    git clone https://github.com/dherbst/septa
+    cd septa
+    make install-local
 
 ## Commands
 
