@@ -1,7 +1,10 @@
 # septa
-Septa command line for getting the next to arrive.
+Septa command line for getting the next regional rail train to arrive.
 
 ## Build
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/dherbst/septa?style=flat-square)](https://goreportcard.com/report/github.com/dherbst/septa)
+
 To build the command, clone this repo, then type `make`.  The septa executable will be copied to `$HOME/bin`.   Prerequisite is that you have `docker` installed, and `$HOME/bin` is on your `$PATH`.
 
     git clone https://github.com/dherbst/septa
