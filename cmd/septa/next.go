@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+
 	"github.com/dherbst/septa"
 )
 
@@ -23,5 +24,4 @@ func NextToArrive(ctx context.Context) {
 	for _, r := range results {
 		fmt.Printf("%v\n", r)
 	}
-	fmt.Printf("\nDone\n\n")
 }
