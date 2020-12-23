@@ -1,5 +1,5 @@
 # septa
-Septa command line for getting the next regional rail train to arrive.
+Septa golang client and command line executable for getting the next regional rail train to arrive.
 
 ## Build
 
@@ -49,7 +49,10 @@ Returns the list of stations
 
 
 ### Alerts
-curl https://www3.septa.org/hackathon/Alerts/?req1=rr_route_pao | python -m json.tool
+Alerts are on the roadmap, but have not been implemented yet.
+
+You can get alerts from this API:
+    curl https://www3.septa.org/hackathon/Alerts/?req1=rr_route_pao | python -m json.tool
 
 ```json
 [
