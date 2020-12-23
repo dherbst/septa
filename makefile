@@ -1,6 +1,6 @@
 .PHONY: all clean pull get build build-in-container image test test-in-container sec sec-in-container lint lint-in-container
 
-GOLANG := golang:1.14
+GOLANG := golang:1.15
 GOOS := darwin
 
 GIT_HASH = $(shell git rev-parse --short HEAD)
