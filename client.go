@@ -88,5 +88,4 @@ func (c *Client) NextToArrive(from string, to string, num int) ([]NextToArriveRe
 	}
 
 	return results, nil
-
 }
