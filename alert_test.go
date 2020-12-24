@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestSeptaAPIBool(t *testing.T) {
+func TestAPIBool(t *testing.T) {
 	testData := map[string]bool{
 		"Yes": true,
 		"Y":   true,
@@ -13,9 +13,9 @@ func TestSeptaAPIBool(t *testing.T) {
 		"err": false,
 	}
 
-	var value SeptaAPIBool = false
+	var value APIBool = false
 
-	for input, _ := range testData {
+	for input := range testData {
 		err := value.UnmarshalJSON([]byte(input))
 		if input == "err" && err == nil {
 			t.Fatalf("Expected error for unknown value")

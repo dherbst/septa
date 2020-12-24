@@ -48,26 +48,9 @@ Returns the list of stations
     ...
 
 
-### Alerts
-Alerts are on the roadmap, but have not been implemented yet.
+### Alerts - `septa alerts [route]`
+Returns the alerts for all routes if no `route` specified, or just for the `route` specified.
 
-You can get alerts from this API:
-    curl https://www3.septa.org/hackathon/Alerts/?req1=rr_route_pao | python -m json.tool
+    $ septa alerts generic
 
-```json
-[
-    {
-        "route_id": "rr_route_pao",
-        "route_name": "
-/Thorndale",
-        "mode": "Regional Rail",
-        "isadvisory": "Yes",
-        "isdetour": "N",
-        "isalert": "N",
-        "issuppend": "N",
-        "last_updated": "Oct 25 2019  9:03PM",
-        "isSnow": "N",
-        "description": "Between Center City, Bryn Mawr, Malvern, Paoli & Thorndale"
-    }
-]
-```
+    Generic All SEPTA service will operate on a Sunday schedule on Friday, December 25 (Christmas Day). All SEPTA passengers are required to wear a face mask or covering. Regular service schedules are in effect, however, the Cynwyd and Chestnut Hill West Lines are suspended. The 12th & Filbert doors at Jefferson Station and the 16th & JFK doors at Suburban Station will be open during the following hours: 6:30 a.m. to 9:30 a.m. and 3:30 p.m. to 6:30 p.m. (Monday-Friday only). During all other hours these doors will be locked. We appreciate your patience during this time. With the launch of the SEPTA Key Card Travel Wallet feature for Regional Rail, the sale of paper tickets, single trip, and 10 trip strips ended <a href="http://septa.org/key/updates/paper-ticket-sales-ending.html">October 2, 2020</a>. Paper tickets will continue to be accepted through the valid date stamped on the back and valid for 180 days from the purchase date.

@@ -16,6 +16,7 @@ func init() {
 		"next":     NextToArrive,
 		"stations": Stations,
 		"version":  Version,
+		"alerts":   Alerts,
 	}
 }
 
