@@ -23,8 +23,8 @@ Alternatively, you can use the `go install` command which should install the `se
 
 ## Commands
 
-### septa next <src> <dest>
-Returns the next to arrive between the src and dest stations.
+### Next to Arrive - `septa next <src> <dest>`
+Returns the next to arrive between the `src` and `dest` stations.
 
     $ septa next Narberth "Suburban Station"
 
@@ -35,8 +35,8 @@ Returns the next to arrive between the src and dest stations.
     Paoli/Thorndale Train 5352 Departs  7:57PM Arrives  8:16PM On time
 
 
-### septa stations
-Returns the list of stations
+### List of stations - `septa stations`
+Returns the list of stations that are used as arguments in the `next` command.
 
     $ septa stations
 
