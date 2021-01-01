@@ -1,5 +1,5 @@
 # septa
-Septa golang client and command line executable for getting the next regional rail train to arrive.
+Septa golang client and command line executable for getting the next regional rail train to arrive.  This project uses https://www3.septa.org/api/
 
 ## Build
 
