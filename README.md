@@ -22,6 +22,9 @@ Alternatively, you can use the `go install` command which should install the `se
     cd septa
     make install-local
 
+### Download the binary
+You can download the latest osx binary `septa` at https://github.com/dherbst/septa/releases.  If you need a windows version please open an issue.
+
 ## Commands
 
 ### Next to Arrive - `septa next <src> <dest>`
