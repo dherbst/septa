@@ -22,7 +22,7 @@ func init() {
 
 // Version prints the version from the septa.GitHash out and exits.
 func Version(ctx context.Context) {
-	fmt.Printf("Version: %v\n", septa.GitHash)
+	fmt.Printf("Version: %v %v\n", septa.Version, septa.GitHash)
 }
 
 // Usage prints how to invoke `septa` from the command line.
