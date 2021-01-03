@@ -3,7 +3,7 @@
 GOLANG := golang:1.15
 GOOS := darwin
 
-VERSION := 1.1.1
+VERSION := 1.1.2
 GIT_HASH = $(shell git rev-parse --short HEAD)
 LDFLAGS := "-X github.com/dherbst/septa.GitHash=${GIT_HASH} -X github.com/dherbst/septa.Version=${VERSION}"
 
@@ -53,3 +53,7 @@ install-local:
 
 image: build
 	docker build -t septa:latest .
+
+# gh-release creates a new release in github and uploads the built binary.
+gh-release:
+	gh release create ${VERSION} 'bin/septa'
