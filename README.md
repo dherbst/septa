@@ -24,6 +24,7 @@ Alternatively, you can use the `go install` command which should install the `se
 
 ### Download the binary
 > **_NOTE:_** If you use OSX Catalina, this binary is not currently signed.  See #2 for progress.
+
 You can download the latest osx binary `septa` at https://github.com/dherbst/septa/releases.  If you need a windows version please open an issue.
 
 ## Commands
