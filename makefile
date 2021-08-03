@@ -1,6 +1,6 @@
 .PHONY: all clean pull get build build-in-container image test test-in-container sec sec-in-container lint lint-in-container
 
-GOLANG := golang:1.15
+GOLANG := golang:1.16
 GOOS := darwin
 
 VERSION := 1.1.3
