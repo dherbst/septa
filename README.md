@@ -4,7 +4,6 @@ Septa golang client and command line executable for getting the next regional ra
 ## Build
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/dherbst/septa?style=flat-square)](https://goreportcard.com/report/github.com/dherbst/septa)
-![golint](https://github.com/dherbst/septa/workflows/golint/badge.svg)
 
 To build the command, clone this repo, then type `make`.  The septa executable will be copied to `$HOME/bin`.   Prerequisite is that you have `docker` installed, and `$HOME/bin` is on your `$PATH`.
 
@@ -21,11 +20,6 @@ Alternatively, you can use the `go install` command which should install the `se
     git clone https://github.com/dherbst/septa
     cd septa
     make install-local
-
-### Download the binary
-> **_NOTE:_** If you use OSX Catalina, this binary is not currently signed.  See #2 for progress.
-
-You can download the latest osx binary `septa` at https://github.com/dherbst/septa/releases.  If you need a windows version please open an issue.
 
 ## Commands
 
