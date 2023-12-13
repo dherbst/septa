@@ -11,12 +11,8 @@ import (
 	"time"
 )
 
-var (
-	// GitHash is the sha hash of the current commit used to build this code.
-	GitHash string
-	// Version is the semantic version according to the release.
-	Version string
-)
+// Version is the semantic version according to the release.
+const Version = "1.1.5"
 
 // Client is used to make calls to the septa website.
 type Client struct {

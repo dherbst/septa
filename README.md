@@ -1,5 +1,12 @@
 # septa
-Septa golang client and command line executable for getting the next regional rail train to arrive.  This project uses https://www3.septa.org/api/
+Septa golang client and command line executable for getting the next regional rail train to arrive.  This project uses the https://www3.septa.org/ API.
+
+## Installing
+The simplest way to install and get going is to run:
+
+    go install github.com/dherbst/septa/cmd/septa@latest
+
+If you have `~/go/bin` in your `$PATH` then you can type `septa` to run the executable.
 
 ## Build
 
