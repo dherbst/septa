@@ -19,6 +19,7 @@ type APIBool bool
 // mapped to the bool type.
 func (item *APIBool) UnmarshalJSON(data []byte) error {
 	value := string(data)
+	value = strings.ReplaceAll(value, "\"", "")
 	if value == "Yes" || value == "Y" || value == "true" {
 		*item = true
 	} else if value == "No" || value == "N" || value == "false" {
@@ -47,6 +48,7 @@ type AlertResult struct {
 	IsModifiedService APIBool `json:"ismodifiedservice"`
 	IsDelays          APIBool `json:"isdelays"`
 	CurrentMessage    string  `json:"current_message"`
+	Advisory          string  `json:"advisory"`
 }
 
 // String prints a formatted version of the AlertResult
@@ -54,7 +56,10 @@ func (r AlertResult) String() string {
 	if r.CurrentMessage != "" {
 		return fmt.Sprintf("%v (%v) %v", r.RouteName, r.RouteID, r.CurrentMessage)
 	}
-	return fmt.Sprintf("%v (%v) no alerts.", r.RouteName, r.RouteID)
+	if r.IsAdvisory {
+		return fmt.Sprintf("%v (%v) *Advisory* %v", r.RouteName, r.RouteID, r.Advisory)
+	}
+	return fmt.Sprintf("%v (%v) no alerts or advisories.", r.RouteName, r.RouteID)
 }
 
 // Alerts makes a call to the alerts api and returns the results.  If no matching route is found, alerts for all routes will be displayed.
@@ -67,7 +72,7 @@ func (c *Client) Alerts(route string) ([]AlertResult, error) {
 		route = strings.ToLower(route)
 		route = Routes[route]
 	}
-	url := fmt.Sprintf("https://%s/hackathon/Alerts/get_alert_data.php?req1=%s", c.Domain, url.QueryEscape(route))
+	url := fmt.Sprintf("https://%s/api/Alerts/index.php?routes=%s", c.Domain, url.QueryEscape(route))
 
 	// #nosec ignoring G107 here because we have cleaned the input above by escaping the route name.
 	response, err := http.Get(url)
