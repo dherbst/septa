@@ -3,7 +3,7 @@
 GOLANG := golang:1.19
 GOOS := darwin
 
-VERSION ?= 1.7.0
+VERSION ?= 1.8.0
 
 all: clean pull test build
 
