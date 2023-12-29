@@ -38,6 +38,7 @@ septa version                              ; prints the commit version
 
 }
 
+//Usage: alerts|next|stations|version
 func main() {
 	flag.Parse()
 
