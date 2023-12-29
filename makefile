@@ -39,7 +39,7 @@ image: build
 
 # gh-release creates a new release in github and uploads the built binary.
 gh-release:
-	gh release create ${VERSION} 'bin/septa.zip'
+	gh release create v${VERSION}
 
 install-mango-doc:
 	go install github.com/dherbst/mango-doc@latest
